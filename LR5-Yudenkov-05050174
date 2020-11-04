@@ -1,8 +1,6 @@
-#define N 7
+
 #include <stdio.h>
 #include <locale.h>
-#include <conio.h>
-#include <math.h>
 
 int main()
 {
@@ -12,29 +10,7 @@ int main()
 
     printf("\n   Введите массив:\n\n");
 
-    for (i = 0;i < N;i++)
-    {
-        scanf_s("%d", &ms[i]);
-    }
-
-    for (i = 0;i < N - 1;i++)
-    {
-        if (ms[i] < ms[i + 1])
-        {
-            el++;
-        }
-
-        else 
-        { 
-            el = 0;
-            sum++; 
-        }
-        if (i == N - 2 && el > 1) 
-        {
-            sum++;
-            break; 
-        }
-    }
+ 
     printf("\n   количество участков возростания: %d\n\n\n\n\n", sum);
     return 0;
 }
