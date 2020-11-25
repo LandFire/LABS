@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<locale.h>
+#include<conio.h>
+
+#define N 15
+
+void main(void)
+
+{
+	setlocale(LC_ALL, "Russian");
+	int mas[N]; // массив чисел
+
+	int summa = 0; // сумма значений
+
+	int raznost = 0; // разность значений
+
+	int n; // количество чисел
+
+	int i;
+
+	printf("\n     Введите количество чисел не более %d: ", N);
+
+	scanf_s(" %d", &n);
+
+	printf("\n     Введите %d элементов массива: ", n);
+
+	for (i = 0; i < n; i++) // цикл по элементам массива
+
+	scanf_s(" %d", &mas[i]); // ввод i-го элемента массива
+
+		int max = mas[0];
+		for (int i = 0; i < n; ++i)
+		{
+			if (mas[i] > max)
+			{
+				max = mas[i];
+			}
+		}
+
+		int min = mas[0];
+		for (int i = 0; i < n; ++i)
+		{
+			if (mas[i] < min)
+			{
+				min = mas[i];
+			}
+		}
+
+			summa = max + min; // суммируются элементы
+
+			raznost = max - min; //вычитаются элементы
+
+
+	printf("\n     сумма значений равна %d\n", summa);
+
+	printf("\n     разность значений равна %d\n\n\n\n\n\n", raznost);
+
+}
