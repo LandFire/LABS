@@ -1,40 +1,80 @@
-
 #include <stdio.h>
-#include <locale.h>
-#include <conio.h>
-#include <math.h>
+#include <stdlib.h>
+#include <time.h>
 
-int main()
-{
-    setlocale(LC_ALL, "Russian");
+                                                               void enter();
+                                                               char* double_char();
+                                                               void gen();
 
-    int ms[N], i, sum = 0, el = 0;
+                                                               int n = 0;
+                                                               int col;
+                                                               char* mas_of_char;
 
-    printf("\n   Введите массив:\n\n");
+                                                               int main() {
+                                                                   int a = 0;
+                                                                   system("color 2");
 
-    for (i = 0;i < N;i++)
-    {
-        scanf_s("%d", &ms[i]);
-    }
+                                                                   while (1) {//chooser like in 6 lab
+                                                                       printf("Enter 1 for hand write, 2 for random generating\n");
+                                                                       scanf("%d", &a);
+                                                                       rewind(stdin);
+                                                                       if (a == 1) {
+                                                                           //          puts("Please enter a count of symbols");
+                                                                           printf("Please enter a count of symbols");
+                                                                           scanf("%d", &n);
+                                                                           mas_of_char = calloc(n * 2, sizeof(char));
+                                                                           enter();
+                                                                           break;
+                                                                       }
+                                                                       if (a == 2) {
+                                                                           //          puts("Please enter a count of symbols");
+                                                                           printf("Please enter a count of symbols\n");
+                                                                           scanf("%d", &n);
+                                                                           mas_of_char = calloc(n * 2, sizeof(char));
+                                                                           gen();
+                                                                           break;
+                                                                       }
+                                                                       //system("CLS");
+                                                                       printf("Error try again\n");
+                                                                   }
+                                                                   mas_of_char = double_char(n);
+                                                                   for (int i = 0; i < ((n - col) * 2); i++) {//output
+                                                                       printf("%c", mas_of_char[i]);
+                                                                   }
+                                                                   //puts(mas_of_char);
+                                                                   free(mas_of_char);//Free pointer
+                                                                   return 0;
+                                                               }
+                                                               void enter() {//Just simple enter by hand
+                                                                   for (int i = 0; i < n; i++) {
+                                                                       mas_of_char[i] = (char)getchar();
+                                                                       printf("%c", mas_of_char[i]);
+                                                                   }
+                                                                   //puts(mas_of_char);//output  current string
+                                                               }
+                                                               void gen() {
+                                                                   srand(time(NULL));
+                                                                   for (int i = 0; i < n; i++) {
+                                                                       mas_of_char[i] = ('!' + rand() % ('z' - 'a'));//Random symbols
+                                                                       printf("%c", mas_of_char[i]);
+                                                                   }
+                                                                   printf("\n");
+                                                                   //puts(mas_of_char);
+                                                               }
+                                                               char* double_char() {
+                                                                   col = 0;//count of '*' symbols
+                                                                   char* mas;//we use "another" array for duplicate current
 
-    for (i = 0;i < N - 1;i++)
-    {
-        if (ms[i] < ms[i + 1])
-        {
-            el++;
-        }
+                                                                   for (int j = 0; j < n; j++) if (mas_of_char[j] == '*') col++;
 
-        else 
-        { 
-            el = 0;
-            sum++; 
-        }
-        if (i == N - 2 && el > 1) 
-        {
-            sum++;
-            break; 
-        }
-    }
-    printf("\n   количество участков возростания: %d\n\n\n\n\n", sum);
-    return 0;
-}
+                                                                   mas = (char*)calloc(((n - col) * 2), sizeof(int));//allocating memory for an array
+                                                                   int j = 0;//index of current array
+                                                                   for (int i = 0; i < n; i++) {
+                                                                       if (mas_of_char[i] != '*') {
+                                                                           mas[j] = mas_of_char[i];
+                                                                           mas[j + 1] = mas_of_char[i];
+                                                                           j += 2;//bcs 2 symbols))
+                                                                       }
+                                                                   }
+                                                                   return mas;
+                                                               }
