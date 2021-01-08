@@ -58,7 +58,7 @@ void* count() {
     for (i = 0; i < n - 1; i++) {
         for (j = i + 1; j < n; j++)
             cor++;
-    }//count cisel nad diagonal
+    }
     arr1 = calloc(cor, sizeof(int));
     arr2 = calloc(cor, sizeof(int));
     puts("\n");
